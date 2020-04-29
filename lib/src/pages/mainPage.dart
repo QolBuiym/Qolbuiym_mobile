@@ -154,7 +154,7 @@ class _MainPageState extends State<MainPage> {
                 bottom: 0,
                 right: 0,
                 child: CustomBottomNavigationBar(
-                  onIconPresedCallback: onBottomIconPressed,
+                  onIconPressedCallback: onBottomIconPressed,
                 ))
           ],
         ),

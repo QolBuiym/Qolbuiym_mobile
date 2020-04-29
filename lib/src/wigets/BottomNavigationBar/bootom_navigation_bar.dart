@@ -4,8 +4,8 @@ import '../../themes/light_color.dart';
 import 'bottom_curved_Painter.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  final Function(int) onIconPresedCallback;
-  CustomBottomNavigationBar({Key key, this.onIconPresedCallback})
+  final Function(int) onIconPressedCallback;
+  CustomBottomNavigationBar({Key key, this.onIconPressedCallback})
       : super(key: key);
 
   @override
@@ -43,8 +43,6 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
   }
 
   double _indexToPosition(int index) {
-    // Calculate button positions based off of their
-    // index (works with `MainAxisAlignment.spaceAround`)
     const buttonCount = 4.0;
     final appWidth = MediaQuery.of(context).size.width;
     final buttonsWidth = _getButtonContainerWidth();
@@ -121,7 +119,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
 
   void _handlePressed(int index) {
     if (_selectedIndex == index || _xController.isAnimating) return;
-    widget.onIconPresedCallback(index);
+    widget.onIconPressedCallback(index);
     setState(() {
       _selectedIndex = index;
     });
