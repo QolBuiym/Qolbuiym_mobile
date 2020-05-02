@@ -1,5 +1,5 @@
-import 'category.dart';
-import 'product.dart';
+import 'package:flutter_ecommerce_app/src/model/category.dart';
+import 'package:flutter_ecommerce_app/src/model/product.dart';
 
 class AppData {
   static List<Product> productList = [
@@ -60,9 +60,13 @@ class AppData {
   ];
   static List<Category> categoryList = [
     Category(),
-    Category(id: 1, name: "Accessories", image: '', isSelected: true),
+    Category(
+      id: 1,
+      name: "Accessories",
+      image: '',
+    ),
     Category(id: 2, name: "Home", image: ''),
-    Category(id: 3, name: "Toys", image: ''),
+    Category(id: 3, name: "Toys", image: '', isSelected: true),
     Category(id: 4, name: "Jewelry", image: ''),
   ];
   static List<String> showThumbnailList = [

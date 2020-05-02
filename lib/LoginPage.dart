@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/src/themes/HexColor.dart';
+import 'package:flutter_ecommerce_app/src/themes/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'src/themes/HexColor.dart';
-import 'src/themes/theme.dart';
 
 // ignore: camel_case_types
 class LoginPage extends StatelessWidget {

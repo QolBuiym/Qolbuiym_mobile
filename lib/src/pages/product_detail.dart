@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
-import '../../settings.dart';
-import '../model/data.dart';
-import '../themes/light_color.dart';
-import '../themes/theme.dart';
-import '../wigets/title_text.dart';
+import 'package:flutter_ecommerce_app/settings.dart';
+import 'package:flutter_ecommerce_app/src/model/data.dart';
+import 'package:flutter_ecommerce_app/src/themes/light_color.dart';
+import 'package:flutter_ecommerce_app/src/themes/theme.dart';
+import 'package:flutter_ecommerce_app/src/wigets/title_text.dart';
 
 class ProductDetailPage extends StatefulWidget {
   ProductDetailPage({Key key}) : super(key: key);
@@ -280,8 +279,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
             color: LightColor.iconColor,
             style: !isSelected ? BorderStyle.solid : BorderStyle.none),
         borderRadius: BorderRadius.all(Radius.circular(10)),
-        color:
-            isSelected ? LightColor.orange : Theme.of(context).backgroundColor,
+        color: isSelected ? LightColor.main : Theme.of(context).backgroundColor,
       ),
       child: TitleText(
         text: text,
@@ -360,7 +358,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => SettingsPage()));
       },
-      backgroundColor: LightColor.orange,
+      backgroundColor: LightColor.main,
       child: Icon(Icons.shopping_basket,
           color: Theme.of(context).floatingActionButtonTheme.backgroundColor),
     );
@@ -370,6 +368,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: _flotingButton(),
+      extendBody: true,
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(

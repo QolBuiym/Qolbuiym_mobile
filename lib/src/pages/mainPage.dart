@@ -1,11 +1,12 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-
-import '../themes/light_color.dart';
-import '../themes/theme.dart';
-import '../wigets/BottomNavigationBar/bootom_navigation_bar.dart';
-import '../wigets/title_text.dart';
-import 'home_page.dart';
-import 'shoping_cart_page.dart';
+import 'package:flutter_ecommerce_app/settings.dart';
+import 'package:flutter_ecommerce_app/src/pages/Test.dart';
+import 'package:flutter_ecommerce_app/src/pages/home_page.dart';
+import 'package:flutter_ecommerce_app/src/pages/product_detail.dart';
+import 'package:flutter_ecommerce_app/src/pages/shoping_cart_page.dart';
+import 'package:flutter_ecommerce_app/src/themes/light_color.dart';
+import 'package:flutter_ecommerce_app/src/themes/theme.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key, this.title}) : super(key: key);
@@ -17,11 +18,25 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  bool isHomePageSelected = true;
-  int tab = 0;
-  Widget shop() {
-    return ShopingCartPage();
-  }
+  final List<Widget> pages = [
+    MyHomePage(
+      key: PageStorageKey('Page1'),
+    ),
+    ProductDetailPage(
+      key: PageStorageKey('Page2'),
+    ),
+    ShopingCartPage(
+      key: PageStorageKey('Page 3'),
+    ),
+    SettingsPage(
+      key: PageStorageKey('Page 4'),
+    ),
+    FirstPage(
+      key: PageStorageKey('Page 5'),
+    )
+  ];
+  int _selectedIndex = 0;
+  final PageStorageBucket bucket = PageStorageBucket();
 
   Widget _appBar() {
     return Container(
@@ -67,97 +82,50 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  Widget _title() {
-    return Container(
-        margin: AppTheme.padding,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                TitleText(
-                  text: isHomePageSelected ? 'QolBuyim' : 'Shopping',
-                  fontSize: 27,
-                  fontWeight: FontWeight.w400,
-                ),
-                TitleText(
-                  text: isHomePageSelected ? 'Products' : 'Cart',
-                  fontSize: 27,
-                  fontWeight: FontWeight.w700,
-                ),
-              ],
-            ),
-            Spacer(),
-            !isHomePageSelected
-                ? Icon(
-                    Icons.delete_outline,
-                    color: LightColor.orange,
-                  )
-                : SizedBox()
-          ],
-        ));
-  }
-
-  void onBottomIconPressed(int index) {
-    if (index == 0 || index == 1) {
-      setState(() {
-        isHomePageSelected = true;
-      });
-    } else {
-      setState(() {
-        isHomePageSelected = false;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            SingleChildScrollView(
-              child: Container(
-                height: AppTheme.fullHeight(context) - 50,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                  colors: [
-                    Color(0xfffbfbfb),
-                    Color(0xfff7f7f7),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                )),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    _appBar(),
-                    _title(),
-                    Expanded(
-                        child: AnimatedSwitcher(
-                            duration: Duration(milliseconds: 200),
-                            switchInCurve: Curves.easeInToLinear,
-                            switchOutCurve: Curves.easeOutBack,
-                            child: isHomePageSelected
-                                ? MyHomePage()
-                                : Align(
-                                    alignment: Alignment.topCenter,
-                                    child: ShopingCartPage(),
-                                  )))
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-                bottom: 0,
-                right: 0,
-                child: CustomBottomNavigationBar(
-                  onIconPressedCallback: onBottomIconPressed,
-                ))
-          ],
-        ),
+      appBar: AppBar(),
+      body: PageStorage(
+        child: pages[_selectedIndex],
+        bucket: bucket,
+      ),
+      extendBody: true,
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.transparent,
+        buttonBackgroundColor: LightColor.main,
+        color: LightColor.main,
+        height: 50.0,
+        animationDuration: Duration(milliseconds: 400),
+        animationCurve: Curves.easeInOutCirc,
+        items: <Widget>[
+          Icon(
+            Icons.home,
+            size: 25,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.list,
+            size: 25,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.shopping_basket,
+            size: 25,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.account_circle,
+            size: 25,
+            color: Colors.white,
+          ),
+        ],
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          }); //Handle button tap
+        },
+        index: _selectedIndex,
       ),
     );
   }

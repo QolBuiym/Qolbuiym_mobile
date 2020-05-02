@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
-import '../model/category.dart';
-import '../themes/light_color.dart';
-import '../themes/theme.dart';
-import 'title_text.dart';
+import 'package:flutter_ecommerce_app/src/model/category.dart';
+import 'package:flutter_ecommerce_app/src/themes/light_color.dart';
+import 'package:flutter_ecommerce_app/src/themes/theme.dart';
+import 'package:flutter_ecommerce_app/src/wigets/title_text.dart';
 
 class ProductIcon extends StatelessWidget {
   // final String imagePath;
@@ -27,7 +26,7 @@ class ProductIcon extends StatelessWidget {
               color:
                   model.isSelected ? LightColor.background : Colors.transparent,
               border: Border.all(
-                  color: model.isSelected ? LightColor.orange : LightColor.grey,
+                  color: model.isSelected ? LightColor.main : LightColor.grey,
                   width: model.isSelected ? 2 : 1),
               boxShadow: <BoxShadow>[
                 BoxShadow(

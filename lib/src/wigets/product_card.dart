@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../model/product.dart';
-import '../themes/light_color.dart';
-import 'title_text.dart';
+import 'package:flutter_ecommerce_app/src/model/product.dart';
+import 'package:flutter_ecommerce_app/src/themes/light_color.dart';
+import 'package:flutter_ecommerce_app/src/wigets/title_text.dart';
 
 class ProductCard extends StatefulWidget {
   final Product product;
@@ -76,7 +75,7 @@ class _ProductCardState extends State<ProductCard> {
                   children: <Widget>[
                     CircleAvatar(
                       radius: 40,
-                      backgroundColor: LightColor.orange.withAlpha(40),
+                      backgroundColor: LightColor.main.withAlpha(40),
                     ),
                     Image.asset(model.image)
                   ],
@@ -89,7 +88,7 @@ class _ProductCardState extends State<ProductCard> {
                 TitleText(
                   text: model.category,
                   fontSize: model.isSelected ? 14 : 12,
-                  color: LightColor.orange,
+                  color: LightColor.main,
                 ),
                 TitleText(
                   text: model.price.toString(),

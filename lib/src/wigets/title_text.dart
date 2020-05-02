@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/src/themes/light_color.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../themes/light_color.dart';
 
 class TitleText extends StatelessWidget {
   final String text;
@@ -13,7 +12,8 @@ class TitleText extends StatelessWidget {
       this.text,
       this.fontSize = 18,
       this.color = LightColor.titleTextColor,
-      this.fontWeight = FontWeight.w800})
+      this.fontWeight = FontWeight.w800
+      })
       : super(key: key);
   @override
   Widget build(BuildContext context) {

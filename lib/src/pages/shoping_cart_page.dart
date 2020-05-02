@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/src/model/data.dart';
+import 'package:flutter_ecommerce_app/src/model/product.dart';
+import 'package:flutter_ecommerce_app/src/pages/mainPage.dart';
+import 'package:flutter_ecommerce_app/src/themes/light_color.dart';
+import 'package:flutter_ecommerce_app/src/themes/theme.dart';
+import 'package:flutter_ecommerce_app/src/wigets/title_text.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../model/data.dart';
-import '../model/product.dart';
-import '../themes/light_color.dart';
-import '../themes/theme.dart';
-import '../wigets/title_text.dart';
-import 'mainPage.dart';
 
 class ShopingCartPage extends StatelessWidget {
   const ShopingCartPage({Key key}) : super(key: key);
@@ -35,7 +34,7 @@ class ShopingCartPage extends StatelessWidget {
                           alignment: Alignment.bottomLeft,
                           child: Container(
                             decoration: BoxDecoration(
-                                color: LightColor.lightGrey,
+                                color: LightColor.darkgrey,
                                 borderRadius: BorderRadius.circular(10)),
                           ),
                         ),
@@ -76,7 +75,7 @@ class ShopingCartPage extends StatelessWidget {
                     height: 35,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                        color: LightColor.lightGrey.withAlpha(150),
+                        color: LightColor.grey.withAlpha(150),
                         borderRadius: BorderRadius.circular(10)),
                     child: TitleText(
                       text: 'x${model.id}',
@@ -106,6 +105,31 @@ class ShopingCartPage extends StatelessWidget {
     );
   }
 
+  Widget _title() {
+    return Container(
+        margin: AppTheme.padding,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                TitleText(
+                  text: 'Product Basket',
+                  fontSize: 27,
+                  fontWeight: FontWeight.w700,
+                ),
+              ],
+            ),
+            Spacer(),
+            Icon(
+              Icons.delete_outline,
+              color: LightColor.main,
+            )
+          ],
+        ));
+  }
+
   Widget _submitButton(BuildContext context) {
     return FlatButton(
         onPressed: () {
@@ -128,7 +152,7 @@ class ShopingCartPage extends StatelessWidget {
 //              foreground: Paint()..shader = LightColor.linearGradient),
             ),
           ),
-          color: LightColor.orange,
+          color: LightColor.main,
         ));
   }
 
@@ -147,6 +171,8 @@ class ShopingCartPage extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            SizedBox(height: 20),
+            _title(),
             _cartItems(),
             Divider(
               thickness: 1,

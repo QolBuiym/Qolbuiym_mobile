@@ -2,10 +2,10 @@
 
 import 'package:division/division.dart';
 import 'package:flutter/material.dart';
-
-import 'src/themes/light_color.dart';
+import 'package:flutter_ecommerce_app/src/themes/light_color.dart';
 
 class SettingsPage extends StatelessWidget {
+  const SettingsPage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,7 +35,6 @@ class UserPage extends StatelessWidget {
       style: contentStyle(context),
       child: Column(
         children: <Widget>[
-          Txt('User settings', style: titleStyle),
           UserCard(),
           ActionsRow(),
           Settings(),
@@ -107,9 +106,9 @@ class UserCard extends StatelessWidget {
     ..height(175)
     ..padding(horizontal: 20.0, vertical: 10)
     ..alignment.center()
-    ..background.hex('#3977FF')
+    ..background.hex('#AF8AF8')
     ..borderRadius(all: 20.0)
-    ..elevation(10, color: hex('#3977FF'));
+    ..elevation(10, color: hex('#AF8AF8'));
 
   final ParentStyle userImageStyle = ParentStyle()
     ..height(50)
@@ -241,7 +240,7 @@ class _SettingsItemState extends State<SettingsItem> {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => SettingsPage()));
       },
-      backgroundColor: LightColor.orange,
+      backgroundColor: LightColor.main,
       child: Icon(Icons.shopping_basket,
           color: Theme.of(context).floatingActionButtonTheme.backgroundColor),
     );
